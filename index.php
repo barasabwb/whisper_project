@@ -2,10 +2,10 @@
 //ini_set('display_errors', 1);
 //ini_set('display_startup_errors', 1);
 //error_reporting(E_ALL);
-const ROOT = 'https://whisperproject.space/whisper/';
+const ROOT = 'http://localhost/whisper/';
 //const BASE = __DIR__;
 
-const BASE = '';
+const BASE = __DIR__.'/';
 
 
 require_once BASE.'base/configurations.php';
