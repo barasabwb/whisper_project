@@ -1,8 +1,8 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-const ROOT = 'http://34.155.223.11/whisper/';
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
+const ROOT = 'https://whisperproject.space/whisper/';
 //const BASE = __DIR__;
 
 const BASE = '';
