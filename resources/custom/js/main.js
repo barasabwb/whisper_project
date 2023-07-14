@@ -1,11 +1,15 @@
+//Main functionality
 
-//registration
+//open registration modal
 $(document).on('click', '.sign_up_btn', function(){
     handle_modal('#registration_modal');
 });
 
+//create account
 $(document).on('click', '.finalize_sign_up_btn', function(){
     let btn = $(this);
+
+    //validation
     if(!isEmail($('.registration_form .email_address').val())){
         input_message($('.registration_form .email_address'),'error','Invalid Email Address');
         return false;
@@ -21,10 +25,12 @@ $(document).on('click', '.finalize_sign_up_btn', function(){
         input_message($('.registration_form .confirm_password'));
         return false;
     }
+    //validation
 
-
-
+    //spinner
     add_button_loader(btn);
+
+    //POST REQUEST
     $.ajax({
         data: {
             email_address:$('.registration_form .email_address').val(),
@@ -48,7 +54,6 @@ $(document).on('click', '.finalize_sign_up_btn', function(){
                 input_message($('.registration_form .email_address'),'error','Email cannot be used.');
                 input_message($('.registration_form .password'));
             }
-
         },
         error: function (xhr, desc, err) {
             add_button_loader(btn, true);
@@ -61,7 +66,7 @@ $(document).on('click', '.finalize_sign_up_btn', function(){
     });
 });
 
-//login
+//login modal
 $(document).on('click', '.sign_in_btn', function(){
     handle_modal('#login_modal');
 });
@@ -69,6 +74,7 @@ $(document).on('click', '.sign_in_btn', function(){
 $(document).on('click', '.finalize_login_btn', function(){
     let btn = $(this);
 
+    //validation
     if(!isEmail($('.login_form .email_address').val())){
         input_message($('.login_form .email_address'),'error','Invalid Email Address');
         return false;
@@ -78,6 +84,7 @@ $(document).on('click', '.finalize_login_btn', function(){
         input_message($('.login_form .password'),'error','Must be at least 4 characters.');
         return false;
     }
+    //validation
 
     $('.login_form input').each(function(){
         input_message($(this), 'success');
@@ -121,7 +128,7 @@ $(document).on('click', '.my_profile_btn', function(){
     handle_modal('#user_profile_modal');
 });
 
-
+//change email
 $(document).on('click', '.change_email_btn', function(){
     let btn = $(this);
 
@@ -160,6 +167,7 @@ $(document).on('click', '.change_email_btn', function(){
 });
 
 
+//change password
 $(document).on('click', '.change_pwd_btn', function(){
     let btn = $(this);
 
@@ -211,10 +219,12 @@ $(document).on('click', '.change_pwd_btn', function(){
 });
 
 //journal functionalities
+//add journal entry modal
 $(document).on('click', '.add_journal_btn', function(){
     handle_modal('#add_journal_modal');
 });
 
+//submit entry
 $(document).on('click', '.finalize_add_journal_btn', function(){
     let btn = $(this);
 
@@ -236,14 +246,19 @@ $(document).on('click', '.finalize_add_journal_btn', function(){
         success: function (data) {
             window.setTimeout(function(){
                 handle_modal('#add_journal_modal');
+
+                //reset inputs
                 $('.journal_input').each(function (){
                     $(this).val('');
                 });
+
+                //remove empty statement
                 if($('.entries_list .empty_list').length){
                     $('.entries_list .empty_list').remove();
                 }
 
                 add_button_loader(btn, true);
+
                 Swal.fire({
                     icon: 'success',
                     title: 'New Journal Entry',
@@ -251,6 +266,7 @@ $(document).on('click', '.finalize_add_journal_btn', function(){
                     timer: 3000,
                 });
 
+                //add new entry without refreshing
                 let new_entry = $('.journal_entry').first().clone();
                 new_entry.addClass('hidden');
                 new_entry.find('.description').html((data.journal_body.length>70?data.journal_body.slice(0, 70)+'....':data.journal_body));
@@ -267,6 +283,7 @@ $(document).on('click', '.finalize_add_journal_btn', function(){
                 window.setTimeout(function(){
                     new_entry.fadeIn('slow');
                 },500);
+
                 $('.add_journal_form .journal_title').val('');
                 $('.add_journal_form .journal_body').val('');
 
@@ -284,7 +301,7 @@ $(document).on('click', '.finalize_add_journal_btn', function(){
     });
 });
 
-//add_modal
+//delete journal
 $(document).on('click', '.delete_journal_btn', function(){
     let entry_id = $(this).prop('id');
     const swalWithBootstrapButtons = Swal.mixin({
@@ -340,7 +357,7 @@ $(document).on('click', '.delete_journal_btn', function(){
     });
 });
 
-//see more functionality
+//'see more' functionality
 $(document).on('click', '.see_more_btn', function(){
     let entry_id = $(this).prop('id');
 
@@ -369,6 +386,7 @@ $(document).on('click', '.see_more_btn', function(){
     });
 });
 
+//edit journal title
 $(document).on('dblclick', '.view_journal_modal .journal_title', function(){
     $(this).addClass('hidden');
     $('.view_journal_modal .journal_title_input').removeClass('hidden').addClass('active_input');
@@ -394,6 +412,7 @@ $(document).on('dblclick', '.view_journal_modal .journal_title', function(){
     });
 });
 
+//edit description title
 $(document).on('dblclick', '.view_journal_modal .description', function(){
     $(this).addClass('hidden');
     if($('.view_journal_modal .journal_body').hasClass('input-error')){
@@ -431,9 +450,9 @@ $(document).on('dblclick', '.view_journal_modal .description', function(){
     });
 });
 
+//on focus out after edit
 $(document).click(function(e) {
     let container = $('.active_input'), exception_1 = $('.view_journal_modal .journal_title'),exception_2 = $('.view_journal_modal .description');
-
     if (!container.is(e.target) && container.has(e.target).length === 0 && !exception_1.is(e.target) && !exception_2.is(e.target)) {
         container.addClass('hidden').removeClass('active_input');
         $('.view_journal_modal .journal_title').removeClass('hidden');
@@ -441,8 +460,7 @@ $(document).click(function(e) {
     }
 });
 
-
-
+//if enter key is pressed remove current edit
 $(document).on('keypress',function(e) {
     if(e.which == 13) {
         if($('.active_input').length){

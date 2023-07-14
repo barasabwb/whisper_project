@@ -1,4 +1,5 @@
 <?php
+//DB CONFIG
 const HOST = '35.223.137.102';
 const DB = 'whisper_db';
 const USER = 'briandev';

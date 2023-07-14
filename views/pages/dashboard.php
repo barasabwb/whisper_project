@@ -1,9 +1,6 @@
-<style>
 
-</style>
 <section class="body_section w-screen min-h-screen" style="padding:3rem 2.5rem 3rem;">
     <span class="w-full text-center shadow-xl"><h1 class="font-bold text-2xl text-gray-50 mb-10">Your Journal Entries</h1></span>
-
     <div class="rounded-md w-full min-h-screen bg-white  p-10">
         <div class="w-full block flex ml-auto mb-5">
             <button class="btn btn-accent ml-auto text-white add_journal_btn">
@@ -33,10 +30,12 @@
             </div>
         </div>
 
+        <!--        empty list template-->
         <div class="empty_list w-full h-80 block flex justify-center items-center mb-5 col-span-3" style="display:none">
             <h1 class="font-bold text-xl">You are yet to share your thoughts! Add your first entry!</h1>
         </div>
 
+<!--        ENTRIES SECTION-->
         <div class="grid md:grid-cols-3 grid-cols-1 block gap-x-4 md:gap-y-4 gap-y-24 entries_list ">
             <?php if(count((array)$data->journals)){?>
                 <?php foreach ($data->journals as $journal){

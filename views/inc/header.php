@@ -10,13 +10,13 @@
         href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap"
         rel="stylesheet" />
         
-        <!-- <link href="<?= ROOT?>resources/external/libraries/tailwind/daisyui/daisyui.css" rel="stylesheet" type="text/css" /> -->
-        <!-- <script src="<?= ROOT?>resources/external/libraries/tailwind/tailwind.js"></script> -->
+
         <link href="<?= ROOT?>resources/dist/output.css" rel="stylesheet" type="text/css" />
         <script src="<?= ROOT?>resources/external/jquery.js"></script>
         <script src="<?= ROOT?>resources/external/libraries/bootstrap/bootstrap.bundle.min.js"></script>
         <script src="https://kit.fontawesome.com/bfd35cbf82.js" crossorigin="anonymous"></script>
         <script src="<?= ROOT?>node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+
         <script>let url_root = '<?=ROOT?>',isLoggedIn='<?=checkLogin()?>';</script>
    
         <!-- CUSTOM CSS  -->

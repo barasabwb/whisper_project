@@ -2,12 +2,15 @@
 //ini_set('display_errors', 1);
 //ini_set('display_startup_errors', 1);
 //error_reporting(E_ALL);
+
 const ROOT = 'https://whisperproject.space/';
 //const BASE = __DIR__;
 
 const BASE = '';
-date_default_timezone_set("Africa/Nairobi");
 
+//date_default_timezone_set("Africa/Nairobi");
+
+//REQUIRE BASE
 require_once BASE.'base/configurations.php';
 require_once BASE.'base/helpers.php';
 require_once BASE.'base/BaseModel.php';
@@ -73,7 +76,7 @@ if ($url == '/')
             try {
                 print $controllerObj->$requestedAction($requestedParams);
             }catch (Throwable){
-                echo "Something went wrong";
+                echo "The page cannot be reached";
             }
 
 
@@ -83,7 +86,7 @@ if ($url == '/')
             try {
                 print $controllerObj->$requestedAction($requestedParams);
             }catch (Throwable){
-                echo "Something went wrong";
+                echo "The page cannot be reached";
             }
 
         }

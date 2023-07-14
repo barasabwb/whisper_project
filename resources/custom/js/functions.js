@@ -1,28 +1,32 @@
+// misc functions
 $(document).ready(function(){
     $('body').fadeIn('fast');
 
-    //updates journal entry times
+    //updates journal entry times every second
     if(isLoggedIn==true){
         window.setInterval(function(){
-            $.ajax({
-                data: 'none',
-                type: 'POST',
-                url: url_root+'main/updateEntryTimers',
-                dataType: "JSON",
-                success: function (data) {
-                    $.each(data, function (key, val) {
-                        $('#'+key+' .published_date').html(val);
-                    });
-                },
-                error: function (xhr, desc, err) {
+            //if there are journal entries update time
+            if($('.journal_entry').length){
+                $.ajax({
+                    data: 'none',
+                    type: 'POST',
+                    url: url_root + 'main/updateEntryTimers',
+                    dataType: "JSON",
+                    success: function (data) {
+                        $.each(data, function (key, val) {
+                            $('#' + key + ' .published_date').html(val);
+                        });
+                    },
+                    error: function (xhr, desc, err) {
 
-                },
-            });
+                    },
+                });
+            }
         },1000);
     }
 })
 
-//open or close modal
+//function to handle opening and closing modals
 function handle_modal(modal_id){
     if($(modal_id).is(':checked')){
         $(modal_id).prop('checked', false);
@@ -52,7 +56,7 @@ function isEmail(email) {
     return regex.test(email);
 }
 
-//button spinner
+//button spinner function
 let btn_html;
 function add_button_loader(btn, reset=false){
     if(reset===false){
@@ -73,7 +77,7 @@ $(document).on('click', '.input_validate', function(){
     $(this).parent().find('.error_message').fadeOut('fast');
 });
 
-//theme change
+//theme change (removed)
 $(document).on('click', '.page-theme', function(){
     if($('#theme_checkbox').is(':checked')){
         $('.html_body').attr('data-theme', 'dark');

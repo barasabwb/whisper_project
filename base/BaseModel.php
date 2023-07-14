@@ -7,6 +7,7 @@ class BaseModel
     private $dbPassword = PASS;
     private $charset = 'utf8mb4';
 
+    //connect to db
     public function connect()
     {
         $dsn = "mysql:host=$this->dbHost;dbname=$this->dbName;charset=$this->charset";

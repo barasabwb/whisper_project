@@ -1,4 +1,5 @@
 <?php if(!checkLogin()){?>
+<!--        HEADER IF NOT LOGGED IN-->
     <section class="navigation_bar_section sticky top-0 z-50">
         <div class="navbar bg-base-100">
           <div class="navbar-start">
@@ -25,6 +26,7 @@
         </div>
     </section>
 <?php }else {?>
+<!--        HEADER IF LOGGED IN-->
     <section class="navigation_bar_section sticky top-0 z-50 bg-transparent" >
         <div class="navbar ">
             <div class="w-full flex justify-center">

@@ -2,12 +2,14 @@
 
 class AuthenticationController extends BaseController
 {
+    //load model
     private $model;
     function __construct()
     {
         $this->model = $this->load_model('Main');
     }
 
+    //sign up
     public function register_user(){
             $this->validatePost();
             if($this->model->check_if_exists('tbl_users', '*', ['email_address'=>$_POST['email_address']])){
@@ -30,6 +32,7 @@ class AuthenticationController extends BaseController
             }
     }
 
+    //login
     public function login_user(){
         $this->validatePost();
         if($this->model->check_if_exists('tbl_users', '*', ['email_address'=>$_POST['email_address']])){
@@ -47,6 +50,7 @@ class AuthenticationController extends BaseController
 
     }
 
+    //update profile
     public function change_details($parameters){
         $this->validatePost();
         $type=$parameters[0];
@@ -82,12 +86,14 @@ class AuthenticationController extends BaseController
         }
     }
 
+    //session
     public function createSession($user){
         $_SESSION['loggedin'] = true;
         $_SESSION['user_id'] = $user->user_id;
         $_SESSION['email_address'] = $user->email_address;
     }
 
+    //logout
     public function logout(){
         unset($_SESSION['loggedin'],$_SESSION['user_id'],$_SESSION['email_address']);
         $this->redirect('main');

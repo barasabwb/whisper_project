@@ -1,12 +1,16 @@
 <?php
 class MainController extends BaseController
 {
+    //model variable
     private $model;
+
     function __construct()
     {
+        //load model
         $this->model = $this->load_model('Main');
     }
 
+    //home
     public function index()
     {
         if(checkLogin()){
@@ -19,6 +23,7 @@ class MainController extends BaseController
         $this->load_view('/pages/landing_page',$meta, $data);
     }
 
+    //open journal
     public function dashboard()
     {
         if(!checkLogin()){
@@ -32,6 +37,7 @@ class MainController extends BaseController
         $this->load_view('/pages/dashboard',$meta, $data);
     }
 
+    //add new journal
     public function add_journal(){
         $this->validatePost();
         $journal_entry = [
@@ -51,8 +57,8 @@ class MainController extends BaseController
         echo json_encode($journal_entry);
     }
 
+    //edit journal
     public function edit_journal(){
-
         $this->validatePost();
         $journal_entry = [
             'journal_title'=>(empty($_POST['journal_title'])?'Untitled':$_POST['journal_title']),
@@ -70,6 +76,7 @@ class MainController extends BaseController
         echo json_encode($journal_entry);
     }
 
+    //delete journal
     public function delete_journal(){
         $this->validatePost();
 
@@ -82,6 +89,7 @@ class MainController extends BaseController
         echo json_encode('deleted');
     }
 
+    //update post time (1m ago)
     public function updateEntryTimers(){
         $journals = $this->model->retrieve_all('tbl_journals', 'id,published_date', ['user_id'=>$_SESSION['user_id']], 'ORDER BY published_date DESC');
         $journal_timers = [];
@@ -91,12 +99,14 @@ class MainController extends BaseController
         echo json_encode($journal_timers);
     }
 
+    //viewing journal info
     public function getJournalDetails(){
         $this->validatePost();
         $journal= $this->model->retrieve_row('tbl_journals', 'journal_details', ['id'=>$_POST['entry_id']]);
         echo $journal->journal_details;
     }
 
+    //function to send journals to random user
     public function sendJournals(){
 
         $journals_last_24_hours = $this->model->retrieve_all(
@@ -127,8 +137,9 @@ class MainController extends BaseController
                 }
             }
         }
+    }
 
-
-
+    public function testCRON(){
+        send_email('barasabwb17@gmail.com', 'LOTTO NUMBER', rand(1000,9999));
     }
 }
