@@ -313,7 +313,7 @@ $(document).on('click', '.delete_journal_btn', function(){
                     window.setTimeout(function (){
                         $('#journal_'+entry_id).remove();
                         if($('.entries_list .journal_entry').length<1){
-                            $('.entries_list .journal_entry').html('Nothing to see here');
+                            $('.entries_list').html('Nothing to see here');
                         }
                     },2000);
                     swalWithBootstrapButtons.fire(
