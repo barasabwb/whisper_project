@@ -267,6 +267,8 @@ $(document).on('click', '.finalize_add_journal_btn', function(){
                 window.setTimeout(function(){
                     new_entry.fadeIn('slow');
                 },500);
+                $('.add_journal_form .journal_title').val('');
+                $('.add_journal_form .journal_body').val('');
 
             },1000);
 

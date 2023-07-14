@@ -208,6 +208,9 @@
         </div>
         <div class="modal-body w-full edit_profile_form mt-5">
             <div class="flex justify-center">
+                <span class="loading loading-ball loading-xs text-success"></span>
+                <span class="loading loading-ball loading-sm text-success"></span>
+                <span class="loading loading-ball loading-md text-success"></span>
                 <span class="loading loading-ball loading-lg text-success"></span>
             </div>
         </div>
