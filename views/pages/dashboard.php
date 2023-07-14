@@ -33,6 +33,10 @@
             </div>
         </div>
 
+        <div class="empty_list w-full h-80 block flex justify-center items-center mb-5 col-span-3" style="display:none">
+            <h1 class="font-bold text-xl">You are yet to share your thoughts! Add your first entry!</h1>
+        </div>
+
         <div class="grid md:grid-cols-3 grid-cols-1 block gap-x-4 md:gap-y-4 gap-y-24 entries_list ">
             <?php if(count((array)$data->journals)){?>
                 <?php foreach ($data->journals as $journal){

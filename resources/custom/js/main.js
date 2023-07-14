@@ -239,8 +239,8 @@ $(document).on('click', '.finalize_add_journal_btn', function(){
                 $('.journal_input').each(function (){
                     $(this).val('');
                 });
-                if($('.empty_list').length){
-                    $('.empty_list').remove();
+                if($('.entries_list .empty_list').length){
+                    $('.entries_list .empty_list').remove();
                 }
 
                 add_button_loader(btn, true);
@@ -312,10 +312,12 @@ $(document).on('click', '.delete_journal_btn', function(){
                 success: function (data) {
                     window.setTimeout(function (){
                         $('#journal_'+entry_id).remove();
-                        if($('.entries_list .journal_entry').length<1){
-                            $('.entries_list').html('Nothing to see here');
-                        }
-                    },2000);
+                    },1500);
+                    if($('.entries_list .journal_entry').length<1){
+                        let empty_alert = $('.empty_list').clone();
+                        $('.entries_list').html(empty_alert);
+                        empty_alert.fadeIn('fast');
+                    }
                     swalWithBootstrapButtons.fire(
                         'Deleted!',
                         'Your Entry has been deleted.',
