@@ -3814,6 +3814,10 @@ html {
     width: 66.666667%;
   }
 
+  .md\:w-1\/4 {
+    width: 25%;
+  }
+
   .md\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
