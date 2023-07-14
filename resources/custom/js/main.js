@@ -374,6 +374,7 @@ $(document).on('dblclick', '.view_journal_modal .journal_title', function(){
     $('.view_journal_modal .journal_title_input').removeClass('hidden').addClass('active_input');
     $('.view_journal_modal .journal_title_input').val($('.view_journal_modal .journal_title').html());
     $('.active_input').keyup( function() {
+        $('.view_journal_modal .journal_title').html((data.journal_title.length==0?'Untitled':data.journal_title));
         $.ajax({
             data: {
                 journal_title:$('.view_journal_modal .journal_title_input').val(),
@@ -384,7 +385,7 @@ $(document).on('dblclick', '.view_journal_modal .journal_title', function(){
             url: url_root+'main/edit_journal',
             dataType: "JSON",
             success: function (data) {
-                $('.view_journal_modal .journal_title').html(data.journal_title);
+
             },
             error: function (xhr, desc, err) {
 
@@ -410,6 +411,7 @@ $(document).on('dblclick', '.view_journal_modal .description', function(){
                 $('.view_journal_modal .journal_body').click();
             }
         }
+        $('.view_journal_modal .description').html($('.view_journal_modal .journal_body').val());
         $.ajax({
             data: {
                 journal_title:$('.view_journal_modal .journal_title_input').val(),
@@ -420,7 +422,7 @@ $(document).on('dblclick', '.view_journal_modal .description', function(){
             url: url_root+'main/edit_journal',
             dataType: "JSON",
             success: function (data) {
-                $('.view_journal_modal .description').html(data.journal_body);
+
             },
             error: function (xhr, desc, err) {
 
