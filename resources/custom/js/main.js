@@ -271,7 +271,7 @@ $(document).on('click', '.finalize_add_journal_btn', function(){
                 new_entry.addClass('hidden');
                 new_entry.find('.description').html((data.journal_body.length>70?data.journal_body.slice(0, 70)+'....':data.journal_body));
                 new_entry.find('.description_mobile').html((data.journal_body.length>70?data.journal_body.slice(0, 40)+'....':data.journal_body));
-                new_entry.find('.card-title').html(data.journal_title);
+                new_entry.find('.card-title').html((data.journal_title.length>35?data.journal_title.slice(0, 35)+'....':data.journal_title));
                 new_entry.find('.published_date').html(data.published_date);
 
                 new_entry.find('.see_more_btn').prop('id', data.journal_id);
@@ -357,10 +357,11 @@ $(document).on('click', '.delete_journal_btn', function(){
     });
 });
 
+let current_view_id;
 //'see more' functionality
 $(document).on('click', '.see_more_btn', function(){
     let entry_id = $(this).prop('id');
-
+    current_view_id = 'journal_'+entry_id;
     $('.view_journal_modal').prop('id', entry_id);
     handle_modal('#loading_modal');
     $.ajax({
@@ -392,7 +393,10 @@ $(document).on('dblclick', '.view_journal_modal .journal_title', function(){
     $('.view_journal_modal .journal_title_input').removeClass('hidden').addClass('active_input');
     $('.view_journal_modal .journal_title_input').val($('.view_journal_modal .journal_title').html());
     $('.active_input').keyup( function() {
-        $('.view_journal_modal .journal_title').html(($('.view_journal_modal .journal_title_input').val().length<1?'Untitled':$('.view_journal_modal .journal_title_input').val()));
+        let value = ($('.view_journal_modal .journal_title_input').val().length<1?'Untitled':$('.view_journal_modal .journal_title_input').val());
+        $('.view_journal_modal .journal_title').html(value);
+
+        $('#'+current_view_id).find('.card-title').html((value.length>35?value.slice(0, 35)+'....':value));
         $.ajax({
             data: {
                 journal_title:$('.view_journal_modal .journal_title_input').val(),
@@ -430,7 +434,10 @@ $(document).on('dblclick', '.view_journal_modal .description', function(){
                 $('.view_journal_modal .journal_body').click();
             }
         }
-        $('.view_journal_modal .description').html($('.view_journal_modal .journal_body').val());
+        let value = $('.view_journal_modal .journal_body').val();
+        $('.view_journal_modal .description').html();
+        $('#'+current_view_id).find('.description').html((value.length>70?value.slice(0, 70)+'....':value));
+        $('#'+current_view_id).find('.description_mobile').html((value.length>70?value.slice(0, 40)+'....':value));
         $.ajax({
             data: {
                 journal_title:$('.view_journal_modal .journal_title_input').val(),
