@@ -6,7 +6,7 @@ const ROOT = 'https://whisperproject.space/whisper/';
 //const BASE = __DIR__;
 
 const BASE = '';
-
+date_default_timezone_set("Africa/Nairobi");
 
 require_once BASE.'base/configurations.php';
 require_once BASE.'base/helpers.php';
