@@ -194,3 +194,16 @@
         </div>
     </div>
 </div>
+
+<!--Loading Modal-->
+<input type="checkbox" id="view_journal_modal" class="modal-toggle" />
+<div class="modal view_journal_modal">
+    <div class="modal-box w-11/12 md:w-1/3 max-w-5xl rounded-sm">
+
+        <div class="modal-body w-full edit_profile_form mt-5">
+            <div class="flex justify-center">
+                <span class="loading loading-spinner loading-lg"></span>
+            </div>
+        </div>
+    </div>
+</div>

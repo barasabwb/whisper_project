@@ -341,19 +341,21 @@ $(document).on('click', '.delete_journal_btn', function(){
 //see more functionality
 $(document).on('click', '.see_more_btn', function(){
     let entry_id = $(this).prop('id');
-    handle_modal('#view_journal_modal');
-    $('.view_journal_modal').prop('id', entry_id);
 
+    $('.view_journal_modal').prop('id', entry_id);
+    handle_modal('#loading_modal');
     $.ajax({
         data: {entry_id},
         type: 'POST',
         url: url_root+'main/getJournalDetails',
         dataType: "JSON",
         success: function (data) {
+            handle_modal('#loading_modal');
             $('.view_journal_modal .journal_title_input').val(data.journal_title);
             $('.view_journal_modal .journal_body').val(data.journal_body);
             $('.view_journal_modal .journal_title').html(data.journal_title);
             $('.view_journal_modal .description').html(data.journal_body);
+            handle_modal('#view_journal_modal');
         },
         error: function (xhr, desc, err) {
             Swal.fire({
