@@ -198,9 +198,9 @@
 <!--Loading Modal-->
 <input type="checkbox" id="loading_modal" class="modal-toggle" />
 <div class="modal loading_modal">
-    <div class="modal-box w-11/12 md:w-1/4 max-w-5xl rounded-sm">
+    <div class="modal-box w-11/12 md:w-1/4 max-w-5xl rounded-sm bg-transparent">
         <div class="modal-head flex">
-            <label for="loading_modal" class="btn btn-circle btn-outline btn-sm ml-auto">
+            <label for="loading_modal" class="btn btn-circle btn-outline btn-sm ml-auto hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                 </svg>
