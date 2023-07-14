@@ -198,7 +198,7 @@
 <!--Loading Modal-->
 <input type="checkbox" id="loading_modal" class="modal-toggle" />
 <div class="modal loading_modal">
-    <div class="modal-box w-11/12 md:w-1/4 max-w-5xl rounded-sm bg-transparent">
+    <div class="modal-box w-11/12 md:w-1/4 max-w-5xl rounded-sm bg-transparent shadow-none">
         <div class="modal-head flex">
             <label for="loading_modal" class="btn btn-circle btn-outline btn-sm ml-auto hidden">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
@@ -208,7 +208,7 @@
         </div>
         <div class="modal-body w-full edit_profile_form mt-5">
             <div class="flex justify-center">
-                <span class="loading loading-spinner loading-lg"></span>
+                <span class="loading loading-ball loading-lg text-success"></span>
             </div>
         </div>
     </div>
