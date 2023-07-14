@@ -374,7 +374,7 @@ $(document).on('dblclick', '.view_journal_modal .journal_title', function(){
     $('.view_journal_modal .journal_title_input').removeClass('hidden').addClass('active_input');
     $('.view_journal_modal .journal_title_input').val($('.view_journal_modal .journal_title').html());
     $('.active_input').keyup( function() {
-        $('.view_journal_modal .journal_title').html((data.journal_title.length==0?'Untitled':data.journal_title));
+        $('.view_journal_modal .journal_title').html(($('.view_journal_modal .journal_title_input').val().length<1?'Untitled':data.journal_title));
         $.ajax({
             data: {
                 journal_title:$('.view_journal_modal .journal_title_input').val(),
